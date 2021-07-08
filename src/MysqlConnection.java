@@ -22,13 +22,13 @@ public class MysqlConnection {
             Boolean dbExists = false;
             while (resultSet.next()){
                 String dbName = resultSet.getString(1);
-                if (!(dbName.equalsIgnoreCase(databaseName))){
+                if (dbName.equalsIgnoreCase(databaseName)){
                     dbExists = true;
                     break;
                 }
             }
 
-            if (dbExists){
+            if (!dbExists){
                 String createDatabase = "CREATE DATABASE "+ databaseName + ";";
                 String connectToDb = "USE "+databaseName+";";
                 //TODO You can add the columns of your table even more tables this is just an illustration
